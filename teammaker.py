@@ -25,14 +25,10 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
                 namelist = file.readlines()
             if people_num * 2 > len(namelist):
                 raise ValueError
-            while self.listWidget.count() is not people_num:
-                name = random.choice(namelist)
-                if not self.listWidget.findItems(name, Qt.MatchExactly) and not self.listWidget_2.findItems(name,Qt.MatchExactly):
-                    self.listWidget.addItem(name)
-            while self.listWidget_2.count() is not people_num:
-                name = random.choice(namelist)
-                if not self.listWidget.findItems(name, Qt.MatchExactly) and not self.listWidget_2.findItems(name,Qt.MatchExactly):
-                    self.listWidget_2.addItem(name)
+            random.shuffle(namelist)
+            namelist=namelist[:people_num*2]
+            self.listWidget.addItems(namelist[:people_num])
+            self.listWidget_2.addItems(namelist[people_num:])
         except FileNotFoundError as e:
             self.statusBar.showMessage(str(e))
         except ValueError as e:
