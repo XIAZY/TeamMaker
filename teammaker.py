@@ -11,8 +11,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MyMainWindow, self).__init__()
         self.setupUi(self)
-        self.label.setText('Pros')
-        self.label_2.setText('Cons')
+        # self.label.setText('Pros')
+        # self.label_2.setText('Cons')
         self.pushButton.clicked.connect(self.do)
 
     def do(self):
@@ -27,6 +27,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
                 raise ValueError
             random.shuffle(namelist)
             namelist=namelist[:people_num*2]
+            for i in range(len(namelist)):
+                namelist[i]=namelist[i].replace('\n','')
             self.listWidget.addItems(namelist[:people_num])
             self.listWidget_2.addItems(namelist[people_num:])
         except FileNotFoundError as e:
