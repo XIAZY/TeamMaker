@@ -33,9 +33,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
             self.listWidget.addItems(namelist[:people_num])
             self.listWidget_2.addItems(namelist[people_num:])
         except FileNotFoundError as e:
-            self.statusBar.showMessage(str(e))
+            self.statusbar.showMessage(str(e))
         except ValueError as e:
-            self.statusBar.showMessage('Too many people required')
+            self.statusbar.showMessage('Too many people required')
 
 
 if __name__ == '__main__':
